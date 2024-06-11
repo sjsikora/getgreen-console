@@ -1,0 +1,39 @@
+body {
+    background-color: #F3F4F6;
+}
+
+.findContainer {
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+    min-width: 290px;
+}
+
+.find-account-form {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%; 
+    flex-direction: row;
+}
+
+.inputContainer {
+    flex: 1;
+}
+
+.inputAndLabelContainer {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+
+button {
+    font-size: medium !important;
+    width: 20%;
+    min-width: 100px;
+}
+
+.findResultsContainer {
+    margin-top: 20px;
+    border-top: 1px solid #BBBBBB;
+}

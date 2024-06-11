@@ -1,0 +1,36 @@
+div {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal; 
+}
+
+input {
+  border: 1px solid #999999;
+  border-radius: 1em;
+  padding: 0.5rem;
+  height: 1.3rem;
+}
+
+button {
+  border-radius: 4rem;
+  background-color: #35AA44;
+  color: white;
+
+  border-color: transparent;
+  height: 3rem;
+
+  font-size: x-large;
+}
+
+.drop-shadow {
+  box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
+  background-color: white;
+}
