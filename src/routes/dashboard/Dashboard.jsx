@@ -28,11 +28,18 @@ function Dashboard() {
             setSearchUserResults(response);
             setResponseCode(response.code);
         }).catch((error) => {
-            console.log('error: ', error);
-            if(error.message === 'Request failed with status code 401') {
-                setResponseCode('UNAUTHORIZED');
-                console.log('unauthorized');
+
+            switch(error.message) {
+                case 'Request failed with status code 400':
+                    setResponseCode('USER_NOT_FOUND');
+                    break;
+                case 'Request failed with status code 401':
+                    setResponseCode('UNAUTHORIZED');
+                    break;
+                default:
+                    setResponseCode('ERROR');
             }
+
         });
 
     }
