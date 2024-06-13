@@ -1,9 +1,41 @@
+import { useLocation } from "react-router-dom";
 import "./Dashboard.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { searchForUser } from "../../logic/ApiCalls";
 
 function Dashboard() {
 
     const [emailOrUsername, setEmailOrUsername] = useState('');
+    const [apiKey, setApiKey] = useState('');
+    const [searchUserResults, setSearchUserResults] = useState({});
+    // SUCCESS, USER_NOT_FOUND
+    const [responseCode, setResponseCode] = useState("");
+
+    const location = useLocation();
+
+
+    useEffect(() => {
+       let { key } = location.state;
+        setApiKey(key);
+        console.log('api key is: ', key);
+    }, [location]);
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        searchForUser(apiKey, emailOrUsername).then((response) => {
+            console.log('response: ', response);
+            setSearchUserResults(response);
+            setResponseCode(response.code);
+        }).catch((error) => {
+            console.log('error: ', error);
+            if(error.message === 'Request failed with status code 401') {
+                setResponseCode('UNAUTHORIZED');
+                console.log('unauthorized');
+            }
+        });
+
+    }
 
 
     return <div>
@@ -24,10 +56,17 @@ function Dashboard() {
                                     id='emailOrUsername' 
                                     name='emailOrUsername'
                                     placeholder='john-283939'
+                                    value={emailOrUsername}
+                                    onChange={(e) => setEmailOrUsername(e.target.value)}
                                     />
                             </div>
-                        <button type='submit'>Search</button>
+                        <button type='submit' onClick={handleSubmit}>Search</button>
+                        
                     </form>
+                    <div className="errorMessage">
+                        {responseCode === 'USER_NOT_FOUND' && 'User not found'}
+                        {responseCode === 'UNAUTHORIZED' && 'Unauthorized, please check your API key'}
+                    </div>
                 </div>
             </div>
             <div className="findResultsContainer">

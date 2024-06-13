@@ -37,3 +37,8 @@ button {
     margin-top: 20px;
     border-top: 1px solid #BBBBBB;
 }
+
+.errorMessage {
+    color: red;
+    padding-top: 20px;
+}

@@ -7,6 +7,13 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173,
-    cors: true
+    proxy: {
+      '/api/userNameOrEmail': {
+        target: "https://api-stg.emeraldtechnology.net/v1/account/userNameOrEmail",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api\/userNameOrEmail/, '')
+      }
+    }
   }
 })

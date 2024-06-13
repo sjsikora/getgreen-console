@@ -1,9 +1,7 @@
 .topView {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 20px;
 }
 
 .accountViewContainer {
@@ -33,6 +31,27 @@
 
 .accountInfoContainer {
     padding: 30px;
+    margin-bottom: 2rem;
+}
+
+.accountTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableContainer {
+    width: 80%;
+    margin: auto;
+}
+
+/* This simply selects every first, second, but not third element in the table*/
+.accountTable th:not(:nth-child(3n)), .accountTable td:not(:nth-child(3n)) {
+    border: 2px solid grey;
+
+}
+
+th, td {
+    padding: 5px;
 }
 
 .recentActionsContainer {

@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import logoURL from "../assets/large_logo.png";
+import { useNavigate} from 'react-router-dom';
 
 import './Root.css';
 
 function Root() {
 
   const [apiKey, setApiKey] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(apiKey);
-
+    navigate('/dashboard', { state: { key: apiKey } });
+  
   }
 
 
