@@ -1,6 +1,9 @@
+
 import styles from "./SearchResult.module.css";
 
+
 function SearchResult({searchUserResults, onClick}) {
+
 
     /*
     {
@@ -8,7 +11,7 @@ function SearchResult({searchUserResults, onClick}) {
         "message": "message",
         "user": {
             "authType": "authType",
-            "email": "email",
+            "email": "email"
             "firstName": "firstName",
             "guid": "guid",
             "lastName": "lastName",

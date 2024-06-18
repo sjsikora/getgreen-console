@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 
 import Root from './routes/Root';
 import Dashboard from './routes/dashboard/Dashboard';
-import Temp from './routes/dashboard/AccountView/AccountView';
+import AccountView from './routes/dashboard/AccountView/AccountView';
 
 import './index.css';
 import {
@@ -21,8 +21,8 @@ const router = createBrowserRouter([
     element: <Dashboard />,
   },
   {
-    path: "/temp",
-    element: <Temp />,
+    path: "/dashboard/account-view",
+    element: <AccountView />,
   }
 ]);
 

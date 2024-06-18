@@ -1,8 +1,7 @@
-import { useLocation } from "react-router-dom";
 import "./Dashboard.css";
 import { useState, useEffect } from "react";
 import { searchForUser } from "../../logic/ApiCalls";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import SearchResult from "../SearchResult";
 
 function Dashboard() {
@@ -49,7 +48,7 @@ function Dashboard() {
     const onEditAccountClick = (e) => {
         e.preventDefault();
 
-        navigate('')
+        navigate('/dashboard/account-view', { state: { key: apiKey, user: searchUserResults } });
         console.log('Edit account clicked');
 
     }
