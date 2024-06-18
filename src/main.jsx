@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 
 import Root from './routes/Root';
 import Dashboard from './routes/dashboard/Dashboard';
-import Temp from './routes/dashboard/AccountView';
+import Temp from './routes/dashboard/AccountView/AccountView';
 
 import './index.css';
 import {

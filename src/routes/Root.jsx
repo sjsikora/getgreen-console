@@ -32,9 +32,7 @@ function Root() {
                         onChange={(e) => setApiKey(e.target.value)}
                         />
                 </div>
-
                 <button className='submit-button' type='submit'>Submit</button>
-
             </form>
         </div>
     </div>

@@ -42,3 +42,8 @@ button {
     color: red;
     padding-top: 20px;
 }
+
+.findResultsContainer {
+    display: flex;
+    justify-content: center;
+}

@@ -13,7 +13,7 @@ function AccountView() {
           "lastName": "Doe",
           "userName": "johndoe1234"
         }
-      };
+    };
 
 
 
