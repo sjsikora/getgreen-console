@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import Root from './routes/Root';
+import Root from './routes/Root/Root';
 import Dashboard from './routes/dashboard/Dashboard';
 import Temp from './routes/dashboard/AccountView';
 
