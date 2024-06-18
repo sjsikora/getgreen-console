@@ -35,3 +35,17 @@ export async function getAccountInfo(apiKey, userId) {
     const response = await axios.get("http://localhost:5173/api/account", headers);
 
 }
+
+
+export async function landingPageLogin(apiKey, emailOrUsername, password) {
+    
+    const headers = getHeaders(apiKey);
+
+    const data = {
+        userNameOrEmail: emailOrUsername,
+        password: password
+    }
+
+    const response = await axios.post("http://localhost:5173/api/auth/login", data, headers);
+    return response.data;
+}

@@ -1,21 +1,20 @@
 import { useState } from 'react';
 import logoURL from "../../assets/large_logo.png";
-//import { useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import ApiKey from './components/ApiKey';
-//import Login from './components/Login';
-
 import './Root.css';
 import Login from './components/Login';
+import { landingPageLogin } from '../../logic/ApiCalls';
 /*
   This is the landing page. We need to get the API key from the user and
   an account login. We then pass this to our dashboard.
 */
 function Root() {
 
-  const [inputs, setInputs] = useState({apiKey: "", userNameOrEmail: "", password: ""});
+  const [inputs, setInputs] = useState({apiKey: "", userNameOrEmail: "", password: "", accessToken: ""});
   const [focusedOnApiKey, setFocusedOnApiKey] = useState(true);
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmitApiKey = (e) => {
     e.preventDefault();
@@ -24,8 +23,13 @@ function Root() {
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-
-
+    landingPageLogin(inputs['apiKey'], inputs['userNameOrEmail'], inputs['password']).then((response) => {
+      setInputs({...inputs, accessToken: response.accessToken});
+      navigate('/dashboard', { state: { key: inputs["apiKey"], token: inputs["accessToken"]}});
+    }).catch((error) => {
+      console.log('error: ', error);
+    });
+    
   }
 
 

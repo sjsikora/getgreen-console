@@ -18,9 +18,6 @@ function AccountView() {
         setData(location.state.user);
         console.log('data: ', location.state.user);
 
-
-
-
         setLoading(false);
     }, [location, navigate]);
 
