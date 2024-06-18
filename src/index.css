@@ -28,6 +28,7 @@ button {
   height: 3rem;
 
   font-size: x-large;
+  cursor: pointer;
 }
 
 .material-symbols-outlined {

@@ -1,23 +1,30 @@
 import "./AccountView.css";
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 function AccountView() {
 
-    const data = {
-        "code": "200",
-        "message": "Hello, this is a message",
-        "user": {
-          "authType": "Apple",
-          "email": "johnDoe@gmail.com",
-          "firstName": "John",
-          "guid": "3028302930293",
-          "lastName": "Doe",
-          "userName": "johndoe1234"
-        }
-      };
+    const [apiKey, setApiKey] = useState("");
+    const [data, setData] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(location.state === null) navigate('/');
+        if(!('user' in location.state)) navigate('/dashboard', { state: { key: location.state.key }});
+        setApiKey(location.state.apiKey);
+        setData(location.state.user);
+        console.log('data: ', location.state.user);
 
 
 
 
+        setLoading(false);
+    }, [location, navigate]);
+
+    if(loading) return <div> Loading... </div>
 
     return <div>
 
