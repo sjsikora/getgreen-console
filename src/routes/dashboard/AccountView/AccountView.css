@@ -22,7 +22,12 @@
 
 .leafCountContainer {
     display: flex;
-    padding: 30px;
+}
+
+.leafCount {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 30px;
 }
 
 .leafImage {

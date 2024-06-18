@@ -8,6 +8,7 @@ function Dashboard() {
 
     const [emailOrUsername, setEmailOrUsername] = useState('');
     const [apiKey, setApiKey] = useState('');
+    const [token, setToken] = useState(''); // This is the access token for the user that is returned from the login
     const [searchUserResults, setSearchUserResults] = useState({});
     const [responseCode, setResponseCode] = useState(""); // SUCCESS, USER_NOT_FOUND, UNAUTHORIZED, ERROR
 
@@ -19,8 +20,11 @@ function Dashboard() {
     // If it is not there, navigate back to the root page
     useEffect(() => {
         if (location.state === null) navigate('/');
-        let { key } = location.state;
-        setApiKey(key);
+
+        console.log('location.state: ', location.state);
+        setApiKey(location.state.key);
+        setToken(location.state.token);
+
     }, [location, navigate]);
 
     // When the user submits the form, search for the user
@@ -48,7 +52,7 @@ function Dashboard() {
     const onEditAccountClick = (e) => {
         e.preventDefault();
 
-        navigate('/dashboard/account-view', { state: { key: apiKey, user: searchUserResults } });
+        navigate('/dashboard/account-view', { state: { key: apiKey, user: searchUserResults, token: token} });
         console.log('Edit account clicked');
 
     }

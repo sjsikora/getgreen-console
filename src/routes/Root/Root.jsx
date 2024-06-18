@@ -11,7 +11,7 @@ import { landingPageLogin } from '../../logic/ApiCalls';
 */
 function Root() {
 
-  const [inputs, setInputs] = useState({apiKey: "", userNameOrEmail: "", password: "", accessToken: ""});
+  const [inputs, setInputs] = useState({apiKey: "", userNameOrEmail: "", password: ""});
   const [focusedOnApiKey, setFocusedOnApiKey] = useState(true);
 
   const navigate = useNavigate();
@@ -24,8 +24,7 @@ function Root() {
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     landingPageLogin(inputs['apiKey'], inputs['userNameOrEmail'], inputs['password']).then((response) => {
-      setInputs({...inputs, accessToken: response.accessToken});
-      navigate('/dashboard', { state: { key: inputs["apiKey"], token: inputs["accessToken"]}});
+      navigate('/dashboard', { state: { key: inputs["apiKey"], token: response.accessToken}});
     }).catch((error) => {
       console.log('error: ', error);
     });

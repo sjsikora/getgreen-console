@@ -22,18 +22,19 @@ export async function searchForUser(apiKey, emailOrUsername) {
 
 }
 
-export async function getAccountInfo(apiKey, userId) {
+export async function getAccountInfo(apiKey, accessToken, userId) {
 
     const headers = {
         headers: {
             'Api-Key': apiKey,
+            'Authorization': 'Bearer ' + accessToken,
             'X-Oguid': userId,
             'Content-Type': '*/*'
         }
     }
 
-    const response = await axios.get("http://localhost:5173/api/account", headers);
-
+    const response = await axios.get("http://localhost:5173/api/account/profile", headers);
+    return response.data;
 }
 
 
