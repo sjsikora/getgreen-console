@@ -3,42 +3,94 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { getAccountInfo } from "../../../logic/ApiCalls";
 import leavesURL from "../../../assets/leaves.png";
+import EditButton from "./components/EditButton";
+import { updatePartnerCode } from "../../../logic/ChangeFunctions";
 
 function AccountView() {
 
-    const [apiKey, setApiKey] = useState("");
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
+    const [inputsToShow, setInputsToShow] = useState({});
 
     const location = useLocation();
     const navigate = useNavigate();
-
-    const inputsToShow = {
-        "authType": "Auth Type",
-        "endDate": "Last Login",
-        "location": "Location",
-        "partnerCode": "Partner Code",
-        "startDate": "Start Date",
-        "timeAdded": "Time Added",
-        "userGuid": "User GUID",
-        "userName": "Username",
-        "userServiceCode": "User Service Code",
-        "userTier": "User Tier",
-        "userTierStartDate": "User Tier Start Date",
-        "zipCode": "Zip Code"
-    }
 
 
     useEffect(() => {
         if(location.state === null) navigate('/');
         if(!('user' in location.state)) navigate('/dashboard', { state: { key: location.state.key, token: location.state.token}});
+
+
+        const key = location.state.key;
+        const token = location.state.token;
+        const email = location.state.user.user.email;
+        const guid = location.state.user.user.guid;
         
-        getAccountInfo(location.state.key, location.state.token, location.state.user.guid).then((response) => {
+        getAccountInfo(key, token, guid).then((response) => {
             console.log('response: ', response);
+            response["email"] = email;
             setData(response);
         }).finally(() => {
+            setInputsToShow({
+                "authType": {
+                    fullname: "Auth Type",
+                    editable: false
+                },
+                "endDate": {
+                    fullname: "Last Login",
+                    editable: false
+                },
+                "location": {
+                    fullname: "Location",
+                    editable: false
+                },
+                "partnerCode": {
+                    fullname: "Partner Code",
+                    editable: true,
+                    function: (newPartnerCode) => updatePartnerCode(key, token, email, newPartnerCode)
+                },
+                "startDate": {
+                    fullname: "Start Date",
+                    editable: false
+                },
+                "timeAdded": {
+                    fullname: "Time Added",
+                    editable: false
+                },
+                "userGuid": {
+                    fullname: "User GUID",
+                    editable: false
+                },
+                "userName": {
+                    fullname: "Username",
+                    editable: true
+                },
+                "userServiceCode": {
+                    fullname: "User Service Code",
+                    editable: true,
+                },
+                "userTier": {
+                    fullname: "User Tier",
+                    editable: true
+                },
+                "userTierStartDate": {
+                    fullname: "User Tier Start Date",
+                    editable: false
+                },
+                "zipCode": {
+                    fullname: "Zip Code",
+                    editable: false 
+                },
+                "email" : {
+                    fullname: "Email",
+                    editable: false
+                }
+            });
+
             setLoading(false);
         });
+
+        console.log('location.state: ', location.state);
 
     }, [location, navigate]);
 
@@ -72,12 +124,12 @@ function AccountView() {
                         <th>Data</th>
                         <th></th>
                     </tr>
-                    {Object.entries(inputsToShow).map(([key, value]) => {
+                    {Object.entries(inputsToShow).map(([key]) => {
                     return (
                         <tr key={key}>
-                            <td>{value}</td>
+                            <td>{inputsToShow[key]["fullname"]}</td>
                             <td>{data[key]}</td>
-                            <td><span className="material-symbols-outlined">edit</span></td>
+                            <td>{inputsToShow[key]["editable"] ? <EditButton sendInputup={inputsToShow[key]["function"]}/> : null }</td>
                         </tr>
                     );
                 })}

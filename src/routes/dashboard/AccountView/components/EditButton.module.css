@@ -1,0 +1,23 @@
+.saveButton {
+    min-width: 48px;
+    max-width: 48px;
+    margin: 10px;
+}
+
+.editButton {
+    min-width: 60px;
+    margin: 3px;
+}
+
+.inputField {
+    max-height: 35px;
+}
+
+.close {
+    position: relative;
+    top: -8px;
+}
+
+.inputContainer {
+    max-height: 15px;
+}

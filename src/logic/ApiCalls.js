@@ -4,7 +4,8 @@ function getHeaders(apiKey) {
     return {
         headers: {
             'Api-Key': apiKey,
-            'Content-Type': '*/*'
+            'Content-Type': '*/*',
+            
         }
     };
 }

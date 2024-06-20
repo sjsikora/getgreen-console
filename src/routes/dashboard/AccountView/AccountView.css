@@ -45,18 +45,22 @@
 }
 
 .tableContainer {
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 
 /* This simply selects every first, second, but not third element in the table*/
 .accountTable th:not(:nth-child(3n)), .accountTable td:not(:nth-child(3n)) {
     border: 2px solid grey;
+}
 
+.accountTable th:nth-child(3n), .accountTable td:nth-child(3n) {
+    width: auto;
 }
 
 th, td {
     padding: 5px;
+    height: 30px
 }
 
 .recentActionsContainer {
