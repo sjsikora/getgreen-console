@@ -4,6 +4,16 @@
     margin: 20px;
 }
 
+.backAndQuickViewContainer {
+    display: flex;
+}
+
+.backContainer {
+    margin-right: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
 .accountViewContainer {
     background-color: white;
     padding: 30px;

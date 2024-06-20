@@ -5,6 +5,7 @@ import { getAccountInfo } from "../../../logic/ApiCalls";
 import leavesURL from "../../../assets/leaves.png";
 import EditButton from "./components/EditButton";
 import { updatePartnerCode } from "../../../logic/ChangeFunctions";
+import BackButton from "./components/BackButton";
 
 function AccountView() {
 
@@ -102,14 +103,22 @@ function AccountView() {
 
         <div className="topView">
 
-            <div className="accountViewContainer drop-shadow">
-                <div className="profileImageContainer">
-                    {data["profileImage"] === "" ? <div>No Image</div> : <img src={data["profileImage"]} width={60} height={60} />}
+            <div className="backAndQuickViewContainer">
+
+                <div className="backContainer">
+                    <BackButton handleBack={() => navigate('/dashboard', {state : {key: location.state.key, token: location.state.token}})}/>
+                </div> 
+
+                <div className="accountViewContainer drop-shadow">
+                    <div className="profileImageContainer">
+                        {data["profileImage"] === "" ? <div>No Image</div> : <img src={data["profileImage"]} width={60} height={60} />}
+                    </div>
+                    <div className="usernameAndEmail">
+                        <div className="username">{data["userName"]}</div>
+                        <div className="email">{data["email"]}</div>
+                    </div>
                 </div>
-                <div className="usernameAndEmail">
-                    <div className="username">{data["userName"]}</div>
-                    <div className="email">{data["email"]}</div>
-                </div>
+
             </div>
 
             <div className="leafCountContainer drop-shadow">
