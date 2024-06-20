@@ -48,7 +48,15 @@ function AccountView() {
                 "partnerCode": {
                     fullname: "Partner Code",
                     editable: true,
-                    function: (newPartnerCode) => updatePartnerCode(key, token, email, newPartnerCode, "PROJ0003")
+                    function: (inputs) => updatePartnerCode(key, token, email, inputs),
+                    dataRequired: {
+                        newPartnerCode: {
+                            fullname: "New Partner Code",
+                        },
+                        newProjectId: {
+                            fullname: "New Project ID",
+                        }
+                    }
                 },
                 "startDate": {
                     fullname: "Start Date",
@@ -142,7 +150,7 @@ function AccountView() {
                         <tr key={key}>
                             <td>{inputsToShow[key]["fullname"]}</td>
                             <td>{data[key]}</td>
-                            <td>{inputsToShow[key]["editable"] ? <EditButton sendInputup={inputsToShow[key]["function"]}/> : null }</td>
+                            <td>{inputsToShow[key]["editable"] ? <EditButton sendInputup={inputsToShow[key]["function"]} dataRequired={inputsToShow[key]['dataRequired']} /> : null }</td>
                         </tr>
                     );
                 })}

@@ -1,41 +1,45 @@
 import { useState } from 'react';
 import style from './EditButton.module.css';
 
-const EditButton = ({ sendInputup }) => {
+const EditButton = ({ sendInputup, dataRequired }) => {
 
     const [isInputShown, setIsInputShown] = useState(false);
-    const [textField, setTextField] = useState(''); // [textField, setTextField
+    const [inputs, setInputs] = useState({}); // [inputs, setInputs]
 
-
-    const handleClickEdit= () => {
-        setIsInputShown(true);
-    };
+    console.log(inputs);
     
-    const handleClose = () => {
-        setIsInputShown(false);
-    }
-
     const saveChanges = () => {
         setIsInputShown(false);
-        sendInputup(textField);
+        sendInputup(inputs);
     }
     
+    if(dataRequired === undefined) return (<></>);
+    
+    return (<>
 
-    if (!isInputShown) {
-        return (
-            <button className={style.editButton} onClick={handleClickEdit}>
-                <span className="material-symbols-outlined">edit</span>
-            </button>
-        );
-    }
-    
-    return (
-        <div> 
-            <span onClick={handleClose} className={"material-symbols-outlined " + style.close}>close</span>
-            <input className={style.inputField} onChange={ (e) => {setTextField(e.target.value)}} type="text" />
-            <button className={style.saveButton} onClick={saveChanges}> <span className="material-symbols-outlined">save</span> </button>
-        </div>
-    );
+        <button className={style.editButton} onClick={() => {setIsInputShown(true)}}>
+            <span className="material-symbols-outlined">edit</span>
+        </button>
+
+        {isInputShown &&
+
+        <div className={style.modalContainer}>
+            <div className={style.modal}>
+                <span onClick={() => {setIsInputShown(false)}} className={"material-symbols-outlined " + style.close}>close</span>
+
+                {Object.keys(dataRequired).map((key) => {
+                    return (
+                        <div key={key}>
+                            <label>{dataRequired[key]["fullname"]}: </label>
+                            <input className={style.inputField} onChange={ (e) => {setInputs({...inputs, [key]: e.target.value})}}type="text" />
+                        </div>
+                    );
+                })}
+
+                <button className={style.saveButton} onClick={saveChanges}> <span className="material-symbols-outlined">save</span> </button>
+            </div>
+        </div>}
+    </>);
 };
 
 export default EditButton;

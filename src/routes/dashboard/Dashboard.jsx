@@ -51,10 +51,7 @@ function Dashboard() {
 
     const onEditAccountClick = (e) => {
         e.preventDefault();
-
         navigate('/dashboard/account-view', { state: { key: apiKey, user: searchUserResults, token: token} });
-        console.log('Edit account clicked');
-
     }
 
     return (

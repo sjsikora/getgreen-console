@@ -3,7 +3,7 @@ import axios from 'axios';
 // This file wll hold every function to call when a change will be made.
 
 // Needs email not username
-export const updatePartnerCode = async (apiKey, token, email, newPartnerCode, newProjectID) => {
+export const updatePartnerCode = async (apiKey, token, email, inputs) => {
     console.log('email: ', email);
     const headers = {
         headers: {
@@ -15,9 +15,10 @@ export const updatePartnerCode = async (apiKey, token, email, newPartnerCode, ne
 
     const data = {
         'email': email,
-        'newPartnerCode': newPartnerCode,
-        'newProjectCode': newProjectID 
-    }
+        ...inputs
+    };
+
+    console.log(data)
 
 
     const response = await axios.post("http://localhost:5173/api/account/partner-code", data, headers);
