@@ -81,7 +81,7 @@ function Dashboard() {
                     <div className="errorMessage">
                         {responseCode === 'USER_NOT_FOUND' ? <p> User Not found</p> : null}
                         {responseCode === 'UNAUTHORIZED' ? <p> Unauthorized, please check your API key: <a href='/'> go back.</a> </p> : null}
-                        {responseCode === 'ERROR' ? <p> An unkown error occurred, please try again later </p> : null}
+                        {responseCode === 'ERROR' ? <p> An unkown error occurred, please try again. </p> : null}
                     </div>  
                 </div>
             </div>

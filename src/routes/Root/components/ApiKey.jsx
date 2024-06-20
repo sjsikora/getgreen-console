@@ -1,6 +1,6 @@
 
 
-function ApiKey({inputs, setInputs, handleSubmit}) {
+function ApiKey({inputs, setInputs, handleSubmit, error}) {
     return (
     <form className='login-form' id='key' name='key' onSubmit={handleSubmit}>
         <div className="key-input">
@@ -15,6 +15,7 @@ function ApiKey({inputs, setInputs, handleSubmit}) {
                 />
         </div>
 
+        <p> {error !== '' ? error : null} </p>
     <button className='submit-button' type='submit'>Submit</button>
 
     </form>

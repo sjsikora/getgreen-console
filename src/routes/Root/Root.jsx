@@ -13,6 +13,7 @@ function Root() {
 
   const [inputs, setInputs] = useState({apiKey: "", userNameOrEmail: "", password: ""});
   const [focusedOnApiKey, setFocusedOnApiKey] = useState(true);
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
@@ -26,7 +27,17 @@ function Root() {
     landingPageLogin(inputs['apiKey'], inputs['userNameOrEmail'], inputs['password']).then((response) => {
       navigate('/dashboard', { state: { key: inputs["apiKey"], token: response.accessToken}});
     }).catch((error) => {
+      
       console.log('error: ', error);
+      if(error.response.statusText === 'Unauthorized') {
+        setFocusedOnApiKey(true);
+        setError('Unauthorized to access API. Please renter key.');
+      } else if(error.response.data.code === 'INVALID_CREDENTIALS') {
+        setError('Invalid credentials. Please try again');
+      } else {
+        setError('An unkown error occured.');
+      }
+
     });
     
   }
@@ -36,8 +47,8 @@ function Root() {
     <div className='container'>
         <img className='logo' id='logo' src={logoURL} alt='GetGreen Logo' width={400}/>
         <div className='text-container drop-shadow'>
-          {focusedOnApiKey ? <ApiKey inputs={inputs} setInputs={setInputs} handleSubmit={handleSubmitApiKey}/> 
-                            : <Login inputs={inputs} setInputs={setInputs} handleSubmit={handleSubmitLogin}/> }
+          {focusedOnApiKey ? <ApiKey inputs={inputs} setInputs={setInputs} handleSubmit={handleSubmitApiKey} error={error} /> 
+                            : <Login inputs={inputs} setInputs={setInputs} handleSubmit={handleSubmitLogin} error={error} /> }
           
         </div>
     </div>
