@@ -72,15 +72,15 @@ function AccountView() {
                 },
                 "userName": {
                     fullname: "Username",
-                    editable: true
+                    editable: false
                 },
                 "userServiceCode": {
                     fullname: "User Service Code",
-                    editable: true,
+                    editable: false,
                 },
                 "userTier": {
                     fullname: "User Tier",
-                    editable: true
+                    editable: false
                 },
                 "userTierStartDate": {
                     fullname: "User Tier Start Date",

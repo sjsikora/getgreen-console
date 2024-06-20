@@ -6,8 +6,6 @@ const EditButton = ({ sendInputup, dataRequired }) => {
     const [isInputShown, setIsInputShown] = useState(false);
     const [inputs, setInputs] = useState({}); // [inputs, setInputs]
 
-    console.log(inputs);
-    
     const saveChanges = () => {
         setIsInputShown(false);
         sendInputup(inputs);
