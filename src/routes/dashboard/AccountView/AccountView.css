@@ -22,6 +22,9 @@
 
 .leafCountContainer {
     display: flex;
+    height: 80px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .leafCount {
@@ -32,6 +35,8 @@
 
 .leafImage {
     margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .accountInfoContainer {

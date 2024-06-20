@@ -47,7 +47,7 @@ function AccountView() {
                 "partnerCode": {
                     fullname: "Partner Code",
                     editable: true,
-                    function: (newPartnerCode) => updatePartnerCode(key, token, email, newPartnerCode)
+                    function: (newPartnerCode) => updatePartnerCode(key, token, email, newPartnerCode, "PROJ0003")
                 },
                 "startDate": {
                     fullname: "Start Date",
@@ -94,6 +94,8 @@ function AccountView() {
 
     }, [location, navigate]);
 
+    console.log('data: ', data);
+
     if(loading) return <div> Loading... </div>
 
     return <div>
@@ -101,7 +103,9 @@ function AccountView() {
         <div className="topView">
 
             <div className="accountViewContainer drop-shadow">
-                <div className="profileImageContainer"> profile image </div>
+                <div className="profileImageContainer">
+                    {data["profileImage"] === "" ? <div>No Image</div> : <img src={data["profileImage"]} width={60} height={60} />}
+                </div>
                 <div className="usernameAndEmail">
                     <div className="username">{data["userName"]}</div>
                     <div className="email">{data["email"]}</div>
@@ -110,7 +114,7 @@ function AccountView() {
 
             <div className="leafCountContainer drop-shadow">
                 <div className="leafCount">{data["totalLeaves"]}</div>
-                <div className="leafImage"><img src={leavesURL} width={80} height={80}/></div>
+                <div className="leafImage"><img src={leavesURL} width={50} height={50}/></div>
             </div>
         </div>
 
