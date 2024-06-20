@@ -2,7 +2,7 @@ import "./Dashboard.css";
 import { useState, useEffect } from "react";
 import { searchForUser } from "../../logic/ApiCalls";
 import { useNavigate, useLocation } from 'react-router-dom';
-import SearchResult from "../SearchResult";
+import SearchResult from "./components/SearchResult";
 
 function Dashboard() {
 
