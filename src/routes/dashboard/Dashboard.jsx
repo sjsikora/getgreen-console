@@ -1,8 +1,8 @@
-import "./Dashboard.css";
 import { useState, useEffect } from "react";
 import { searchForUser } from "../../logic/ApiCalls";
 import { useNavigate, useLocation } from 'react-router-dom';
 import SearchResult from "./components/SearchResult";
+import style from "./Dashboard.module.css";
 
 function Dashboard() {
 
@@ -57,40 +57,40 @@ function Dashboard() {
 
     }
 
-    return <div>
-        <div className='findContainer'>
-            <div className='findSearchContainer'>
-                    <h2>
-                        Find an Account
-                    </h2>
-                <div>
-                    <form className='find-account-form' id='findAccountForm'>
-                        <div className="inputAndLabelContainer">
-                                <label> Email or Username</label>
-                                <input 
-                                    type='text'
-                                    id='emailOrUsername' 
-                                    name='emailOrUsername'
-                                    placeholder='john-283939'
+    return (
+        <div>
+            <div className={style.findContainer}>
+                <div className={style.findSearchContainer}>
+                    <h2>Find an Account</h2>
+                    <div>
+                        <form className={style["find-account-form"]} id="findAccountForm">
+                            <div className={style.inputAndLabelContainer}>
+                                <label>Email or Username</label>
+                                <input
+                                    type="text"
+                                    id="emailOrUsername"
+                                    name="emailOrUsername"
+                                    placeholder="john-283939"
                                     value={emailOrUsername}
                                     onChange={(e) => setEmailOrUsername(e.target.value)}
-                                    />
+                                />
                             </div>
-                        <button type='submit' onClick={handleSubmit}>Search</button>
-                    </form>
-                    <div className="errorMessage">
-                        {responseCode === 'USER_NOT_FOUND' ? <p> User Not found</p> : null}
-                        {responseCode === 'UNAUTHORIZED' ? <p> Unauthorized, please check your API key: <a href='/'> go back.</a> </p> : null}
-                        {responseCode === 'ERROR' ? <p> An unkown error occurred, please try again. </p> : null}
-                    </div>  
+                            <button type="submit" onClick={handleSubmit}>Search</button>
+                        </form>
+                        <div className={style.errorMessage}>
+                            {responseCode === 'USER_NOT_FOUND' ? <p>User Not found</p> : null}
+                            {responseCode === 'UNAUTHORIZED' ? <p>Unauthorized, please check your API key: <a href="/">go back.</a></p> : null}
+                            {responseCode === 'ERROR' ? <p>An unkown error occurred, please try again.</p> : null}
+                        </div>
+                    </div>
+                </div>
+                {/* Here are the results from the search. It is handled in SearchResult comp*/}
+                <div className={style.findResultsContainer}>
+                    <SearchResult searchUserResults={searchUserResults} onClick={onEditAccountClick} />
                 </div>
             </div>
-            {/* Here are the results from the search. It is handedled in SearchResult comp*/}
-            <div className="findResultsContainer">
-                <SearchResult searchUserResults={searchUserResults} onClick={onEditAccountClick} />
-            </div>
         </div>
-    </div>
+    );
 }
 
 export default Dashboard;
