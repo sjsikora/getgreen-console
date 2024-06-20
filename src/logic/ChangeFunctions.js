@@ -3,7 +3,7 @@ import axios from 'axios';
 // This file wll hold every function to call when a change will be made.
 
 // Needs email not username
-export const updatePartnerCode = async (apiKey, token, email, newPartnerCode) => {
+export const updatePartnerCode = async (apiKey, token, email, newPartnerCode, newProjectID) => {
     console.log('email: ', email);
     const headers = {
         headers: {
@@ -16,7 +16,7 @@ export const updatePartnerCode = async (apiKey, token, email, newPartnerCode) =>
     const data = {
         'email': email,
         'newPartnerCode': newPartnerCode,
-        'newProjectCode': 'PROJ0003' // This is a temporary value
+        'newProjectCode': newProjectID // This is a temporary e
     }
 
 
