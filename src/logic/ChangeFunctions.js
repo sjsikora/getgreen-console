@@ -16,7 +16,7 @@ export const updatePartnerCode = async (apiKey, token, email, newPartnerCode, ne
     const data = {
         'email': email,
         'newPartnerCode': newPartnerCode,
-        'newProjectCode': newProjectID // This is a temporary e
+        'newProjectCode': newProjectID 
     }
 
 
