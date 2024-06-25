@@ -18,7 +18,7 @@ function Login({inputs, setInputs, handleSubmit, error}) {
         <div className="key-input">
             <label htmlFor="apiKey">Password</label>
             <input
-                type="text"
+                type="password"
                 id="password"
                 name="password"
                 placeholder="Enter password"
