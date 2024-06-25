@@ -27,7 +27,7 @@ function Login({inputs, setInputs, handleSubmit, error}) {
                 />
         </div>
 
-        <p> {error !== '' ? error : null} </p>
+        <p className='error'> {error !== '' ? error : null} </p>
 
     <button className={style.submit_button} type='submit'>Submit</button>
 
