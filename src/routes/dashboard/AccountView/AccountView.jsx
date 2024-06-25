@@ -1,4 +1,4 @@
-import "./AccountView.css";
+import style from "./AccountView.module.css"; 
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { getAccountInfo } from "../../../logic/ApiCalls";
@@ -109,59 +109,58 @@ function AccountView() {
 
     return <div>
 
-        <div className="topView">
+    <div className={style.topView}>
 
-            <div className="backAndQuickViewContainer">
+        <div className={style.backAndQuickViewContainer}>
 
-                <div className="backContainer">
-                    <BackButton handleBack={() => navigate('/dashboard', {state : {key: location.state.key, token: location.state.token}})}/>
-                </div> 
+            <div className={style.backContainer}>
+                <BackButton handleBack={() => navigate('/dashboard', {state : {key: location.state.key, token: location.state.token}})}/>
+            </div> 
 
-                <div className="accountViewContainer drop-shadow">
-                    <div className="profileImageContainer">
-                        {data["profileImage"] === "" ? <div>No Image</div> : <img src={data["profileImage"]} width={60} height={60} />}
-                    </div>
-                    <div className="usernameAndEmail">
-                        <div className="username">{data["userName"]}</div>
-                        <div className="email">{data["email"]}</div>
-                    </div>
+            <div className={style.accountViewContainer + " drop-shadow"}>
+                <div className={style.profileImageContainer}>
+                    {data["profileImage"] === "" ? <div>No Image</div> : <img src={data["profileImage"]} width={60} height={60} />}
                 </div>
-
+                <div className={style.usernameAndEmail}>
+                    <div className={style.username}>{data["userName"]}</div>
+                    <div className={style.email}>{data["email"]}</div>
+                </div>
             </div>
 
-            <div className="leafCountContainer drop-shadow">
-                <div className="leafCount">{data["totalLeaves"]}</div>
-                <div className="leafImage"><img src={leavesURL} width={50} height={50}/></div>
-            </div>
         </div>
 
-
-        <div className="accountInfoContainer drop-shadow">
-            <h2> Account information </h2>
-            <div className="tableContainer">
-                <table className="accountTable">
-                    <tr>
-                        <th>Field</th>
-                        <th>Data</th>
-                        <th></th>
-                    </tr>
-                    {Object.entries(inputsToShow).map(([key]) => {
-                    return (
-                        <tr key={key}>
-                            <td>{inputsToShow[key]["fullname"]}</td>
-                            <td>{data[key]}</td>
-                            <td>{inputsToShow[key]["editable"] ? <EditButton sendInputup={inputsToShow[key]["function"]} dataRequired={inputsToShow[key]['dataRequired']} /> : null }</td>
-                        </tr>
-                    );
-                })}
-                </table>
-            </div>
-        </div>
-
-        <div className="recentActionsContainer drop-shadow">
-            <h2> Recent Actions </h2>
+        <div className={style.leafCountContainer + " drop-shadow"}>
+            <div className={style.leafCount}>{data["totalLeaves"]}</div>
+            <div className={style.leafImage}><img src={leavesURL} width={50} height={50}/></div>
         </div>
     </div>
-}
 
+
+    <div className={style.accountInfoContainer + " drop-shadow"}>
+        <h2> Account information </h2>
+        <div className={style.tableContainer}>
+            <table className={style.accountTable}>
+                <tr>
+                    <th>Field</th>
+                    <th>Data</th>
+                    <th></th>
+                </tr>
+                {Object.entries(inputsToShow).map(([key]) => {
+                return (
+                    <tr key={key}>
+                        <td>{inputsToShow[key]["fullname"]}</td>
+                        <td>{data[key]}</td>
+                        <td>{inputsToShow[key]["editable"] ? <EditButton sendInputup={inputsToShow[key]["function"]} dataRequired={inputsToShow[key]['dataRequired']} /> : null }</td>
+                    </tr>
+                );
+            })}
+            </table>
+        </div>
+    </div>
+
+    <div className={style.recentActionsContainer + " drop-shadow"}>
+        <h2> Recent Actions </h2>
+    </div>
+</div>
+}
 export default AccountView;
