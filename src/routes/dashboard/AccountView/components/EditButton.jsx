@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import style from './EditButton.module.css';
 
-const EditButton = ({ sendInputup, dataRequired }) => {
+const EditButton = ({ sendInputup, dataRequired, subjectFullName }) => {
 
     const [isInputShown, setIsInputShown] = useState(false);
     const [inputs, setInputs] = useState({}); // [inputs, setInputs]
+    const [errorMessage, setErrorMessage] = useState('');
 
     const saveChanges = () => {
-        setIsInputShown(false);
-        sendInputup(inputs);
+        sendInputup(inputs).then(() => {
+            setIsInputShown(false);
+        }).catch((error) => {
+            console.log('error: ', error);
+            setErrorMessage(error.response.data.code)
+        });
     }
     
     if(dataRequired === undefined) return (<></>);
@@ -23,18 +28,26 @@ const EditButton = ({ sendInputup, dataRequired }) => {
 
         <div className={style.modalContainer}>
             <div className={style.modal}>
-                <span onClick={() => {setIsInputShown(false)}} className={"material-symbols-outlined " + style.close}>close</span>
+
+                <div className={style.modalHeader}> 
+                    <h2> Edit {subjectFullName} </h2>
+                    <span onClick={() => {setIsInputShown(false); setErrorMessage('')}} className={"material-symbols-outlined " + style.close}>close</span>
+                </div>
 
                 {Object.keys(dataRequired).map((key) => {
                     return (
-                        <div key={key}>
+                        <div className={style.inputs} key={key}>
                             <label>{dataRequired[key]["fullname"]}: </label>
                             <input className={style.inputField} onChange={ (e) => {setInputs({...inputs, [key]: e.target.value})}}type="text" />
                         </div>
                     );
                 })}
 
-                <button className={style.saveButton} onClick={saveChanges}> <span className="material-symbols-outlined">save</span> </button>
+                <p className='error'> {errorMessage != '' ? errorMessage : null} </p>
+
+                <div className={style.buttonContainer}> 
+                    <button className={style.saveButton} onClick={saveChanges}> <span className="material-symbols-outlined">save</span> </button>
+                </div>
             </div>
         </div>}
     </>);

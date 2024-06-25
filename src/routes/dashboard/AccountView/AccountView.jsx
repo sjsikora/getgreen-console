@@ -150,7 +150,10 @@ function AccountView() {
                     <tr key={key}>
                         <td>{inputsToShow[key]["fullname"]}</td>
                         <td>{data[key]}</td>
-                        <td>{inputsToShow[key]["editable"] ? <EditButton sendInputup={inputsToShow[key]["function"]} dataRequired={inputsToShow[key]['dataRequired']} /> : null }</td>
+                        <td>{inputsToShow[key]["editable"] ? 
+                            <EditButton sendInputup={inputsToShow[key]["function"]} 
+                                        dataRequired={inputsToShow[key]['dataRequired']} 
+                                        subjectFullName={inputsToShow[key]["fullname"]} /> : null }</td>
                     </tr>
                 );
             })}
