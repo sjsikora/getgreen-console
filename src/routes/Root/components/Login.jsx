@@ -1,9 +1,9 @@
-
+import style from '../Root.module.css';
 
 function Login({inputs, setInputs, handleSubmit, error}) {
     return (
-    <form className='login-form' id='key' name='key' onSubmit={handleSubmit}>
-        <div className="key-input">
+    <form className={style.form} id='key' name='key' onSubmit={handleSubmit}>
+        <div className={style.key_input}>
             <label htmlFor="apiKey">Username or Email</label>
             <input
                 type="text"
@@ -15,7 +15,7 @@ function Login({inputs, setInputs, handleSubmit, error}) {
                 />
         </div>
 
-        <div className="key-input">
+        <div className={style.key_input}>
             <label htmlFor="apiKey">Password</label>
             <input
                 type="password"
@@ -29,7 +29,7 @@ function Login({inputs, setInputs, handleSubmit, error}) {
 
         <p> {error !== '' ? error : null} </p>
 
-    <button className='submit-button' type='submit'>Submit</button>
+    <button className={style.submit_button} type='submit'>Submit</button>
 
     </form>
     )

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import logoURL from "../../assets/large_logo.png";
 import { useNavigate} from 'react-router-dom';
 import ApiKey from './components/ApiKey';
-import './Root.css';
+import style from './Root.module.css'; 
 import Login from './components/Login';
 import { landingPageLogin } from '../../logic/ApiCalls';
 /*
@@ -44,9 +44,9 @@ function Root() {
 
 
   return (
-    <div className='container'>
-        <img className='logo' id='logo' src={logoURL} alt='GetGreen Logo' width={400}/>
-        <div className='text-container drop-shadow'>
+    <div className={style.container}>
+        <img className={style.logo} id='logo' src={logoURL} alt='GetGreen Logo' width={400}/>
+        <div className={style.text_container + " drop-shadow"}>
           {focusedOnApiKey ? <ApiKey inputs={inputs} setInputs={setInputs} handleSubmit={handleSubmitApiKey} error={error} /> 
                             : <Login inputs={inputs} setInputs={setInputs} handleSubmit={handleSubmitLogin} error={error} /> }
           

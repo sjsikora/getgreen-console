@@ -1,9 +1,9 @@
-
+import style from "../Root.module.css";
 
 function ApiKey({inputs, setInputs, handleSubmit, error}) {
     return (
-    <form className='login-form' id='key' name='key' onSubmit={handleSubmit}>
-        <div className="key-input">
+    <form className={style.form} id='key' name='key' onSubmit={handleSubmit}>
+        <div className={style.key_input}>
             <label htmlFor="apiKey">API Key</label>
             <input
                 type="text"
@@ -16,7 +16,7 @@ function ApiKey({inputs, setInputs, handleSubmit, error}) {
         </div>
 
         <p> {error !== '' ? error : null} </p>
-    <button className='submit-button' type='submit'>Submit</button>
+    <button className={style.submit_button} type='submit'>Submit</button>
 
     </form>
     )
