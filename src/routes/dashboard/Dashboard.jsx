@@ -49,42 +49,42 @@ function Dashboard() {
         });
     }
 
+    console.log('searchUserResults: ', searchUserResults);
+
     const onEditAccountClick = (e) => {
         e.preventDefault();
         navigate('/dashboard/account-view', { state: { key: apiKey, user: searchUserResults, token: token} });
     }
 
     return (
-        <div>
-            <div className={style.findContainer}>
-                <div className={style.findSearchContainer}>
-                    <h2>Find an Account</h2>
-                    <div>
-                        <form className={style["find-account-form"]} id="findAccountForm">
-                            <div className={style.inputAndLabelContainer}>
-                                <label>Email or Username</label>
-                                <input
-                                    type="text"
-                                    id="emailOrUsername"
-                                    name="emailOrUsername"
-                                    placeholder="john-283939"
-                                    value={emailOrUsername}
-                                    onChange={(e) => setEmailOrUsername(e.target.value)}
-                                />
-                            </div>
-                            <button type="submit" onClick={handleSubmit}>Search</button>
-                        </form>
-                        <div className={style.errorMessage}>
-                            {responseCode === 'USER_NOT_FOUND' ? <p>User Not found</p> : null}
-                            {responseCode === 'UNAUTHORIZED' ? <p>Unauthorized, please check your API key: <a href="/">go back.</a></p> : null}
-                            {responseCode === 'ERROR' ? <p>An unkown error occurred, please try again.</p> : null}
+        <div className={style.findContainer}>
+            <div className={style.findSearchContainer}>
+                <h2>Find an Account</h2>
+                <div>
+                    <form className={style["find-account-form"]} id="findAccountForm">
+                        <div className={style.inputAndLabelContainer}>
+                            <label>Email or Username</label>
+                            <input
+                                type="text"
+                                id="emailOrUsername"
+                                name="emailOrUsername"
+                                placeholder="john-283939"
+                                value={emailOrUsername}
+                                onChange={(e) => setEmailOrUsername(e.target.value)}
+                            />
                         </div>
+                        <button type="submit" onClick={handleSubmit}>Search</button>
+                    </form>
+                    <div className={style.errorMessage}>
+                        {responseCode === 'USER_NOT_FOUND' ? <p>User Not found</p> : null}
+                        {responseCode === 'UNAUTHORIZED' ? <p>Unauthorized, please check your API key: <a href="/">go back.</a></p> : null}
+                        {responseCode === 'ERROR' ? <p>An unkown error occurred, please try again.</p> : null}
                     </div>
                 </div>
-                {/* Here are the results from the search. It is handled in SearchResult comp*/}
-                <div className={style.findResultsContainer}>
-                    <SearchResult searchUserResults={searchUserResults} onClick={onEditAccountClick} />
-                </div>
+            </div>
+            {/* Here are the results from the search. It is handled in SearchResult comp*/}
+            <div className={style.findResultsContainer}>
+                <SearchResult searchUserResults={searchUserResults} onClick={onEditAccountClick} />
             </div>
         </div>
     );

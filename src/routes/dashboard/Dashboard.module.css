@@ -8,6 +8,13 @@ body {
     width: 80%;
     min-width: 290px;
     margin: auto;
+    margin-top: 40px;
+    display: flex;
+    
+}
+
+.findSearchContainer {
+    width: 60%;
 }
 
 .find-account-form {
@@ -36,7 +43,7 @@ button {
 
 .findResultsContainer {
     margin-top: 20px;
-    border-top: 1px solid #BBBBBB;
+    border-left: 1px solid #BBBBBB;
 }
 
 .errorMessage {
@@ -47,4 +54,5 @@ button {
 .findResultsContainer {
     display: flex;
     justify-content: center;
+    width: 40%;
 }
