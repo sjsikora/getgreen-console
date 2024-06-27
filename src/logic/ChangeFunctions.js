@@ -35,7 +35,7 @@ export const sendResetPasswordEmail = async (apiKey, email) => {
     }
 
     const data = {
-        email: email
+        userNameOrEmail: email
     }
 
     const response = await axios.post("http://localhost:5173/api/account/reset-password", data, headers);
