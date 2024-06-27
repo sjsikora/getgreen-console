@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Needs email not username
 export const updatePartnerCode = async (apiKey, token, email, inputs) => {
-    console.log('email: ', email);
+
     const headers = {
         headers: {
             'Api-Key': apiKey,
@@ -23,5 +23,21 @@ export const updatePartnerCode = async (apiKey, token, email, inputs) => {
 
     const response = await axios.post("http://localhost:5173/api/account/partner-code", data, headers);
     console.log('response: ', response);
+    return response.data;
+}
+
+export const sendResetPasswordEmail = async (apiKey, email) => {
+    const headers = {
+        headers: {
+            'Api-Key': apiKey,
+            'Content-Type': '*/*'
+        }
+    }
+
+    const data = {
+        email: email
+    }
+
+    const response = await axios.post("http://localhost:5173/api/account/reset-password", data, headers);
     return response.data;
 }

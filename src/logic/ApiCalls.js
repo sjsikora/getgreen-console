@@ -51,3 +51,16 @@ export async function landingPageLogin(apiKey, emailOrUsername, password) {
     const response = await axios.post("http://localhost:5173/api/auth/login", data, headers);
     return response.data;
 }
+
+export async function sendResetPasswordEmail(apiKey, email) {
+
+    const headers = getHeaders(apiKey);
+
+    const data = {
+        email: email
+    }
+
+    const response = await axios.post("http://localhost:5173/api/account/reset-password", data, headers);
+    return response.data;
+    
+}

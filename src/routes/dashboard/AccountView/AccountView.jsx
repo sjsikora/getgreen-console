@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getAccountInfo } from "../../../logic/ApiCalls";
 import leavesURL from "../../../assets/leaves.png";
 import EditButton from "./components/EditButton";
-import { updatePartnerCode } from "../../../logic/ChangeFunctions";
+import { updatePartnerCode, sendResetPasswordEmail } from "../../../logic/ChangeFunctions";
 import BackButton from "./components/BackButton";
 
 function AccountView() {
@@ -30,8 +30,11 @@ function AccountView() {
         getAccountInfo(key, token, guid).then((response) => {
             console.log('response: ', response);
             response["email"] = email;
+            // This is a checky little work around because we want the password field to have a row to send reset password
+            response["password"] = "********"; 
             setData(response);
         }).finally(() => {
+
             setInputsToShow({
                 "authType": {
                     fullname: "Auth Type",
@@ -57,6 +60,12 @@ function AccountView() {
                             fullname: "New Project ID",
                         }
                     }
+                },
+                "password": {
+                    fullname: "Password",
+                    editable: true,
+                    function: () => sendResetPasswordEmail(key, email),
+                    dataRequired: {}
                 },
                 "startDate": {
                     fullname: "Start Date",
@@ -154,14 +163,16 @@ function AccountView() {
                                         subjectFullName={inputsToShow[key]["fullname"]} /> : null }</td>
                     </tr>
                 );
-            })}
+                })}
+
             </table>
         </div>
     </div>
 
     <div className={style.recentActionsContainer + " drop-shadow"}>
         <h2> Recent Actions </h2>
-        <div> 
+        <div>
+        {data?.activityChallenges ?
             <table className={style.recentActionsTable}>
                 <tr>
                     <th>Action</th>
@@ -169,6 +180,7 @@ function AccountView() {
                     <th>Difficulty</th>
                     <th>Leaves</th>
                 </tr>
+
                 {data["activityChallenges"].map((activity) => {
 
                     return (
@@ -187,6 +199,8 @@ function AccountView() {
                     );
                 })}
             </table>
+
+        : <div> No actions have been completed on this account </div>}
 
         </div>
     </div>

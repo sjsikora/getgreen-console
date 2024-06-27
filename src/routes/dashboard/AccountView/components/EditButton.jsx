@@ -34,6 +34,8 @@ const EditButton = ({ sendInputup, dataRequired, subjectFullName }) => {
                     <span onClick={() => {setIsInputShown(false); setErrorMessage('')}} className={"material-symbols-outlined " + style.close}>close</span>
                 </div>
 
+                {subjectFullName === 'Password'? <div> Send Reset Password Email</div> : null}
+
                 {Object.keys(dataRequired).map((key) => {
                     return (
                         <div className={style.inputs} key={key}>
@@ -46,7 +48,7 @@ const EditButton = ({ sendInputup, dataRequired, subjectFullName }) => {
                 <p className='error'> {errorMessage != '' ? errorMessage : null} </p>
 
                 <div className={style.buttonContainer}> 
-                    <button className={style.saveButton} onClick={saveChanges}> <span className="material-symbols-outlined">save</span> </button>
+                    <button className={style.saveButton} onClick={saveChanges}> Submit </button>
                 </div>
             </div>
         </div>}
