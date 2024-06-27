@@ -99,8 +99,6 @@ function AccountView() {
             setLoading(false);
         });
 
-        console.log('location.state: ', location.state);
-
     }, [location, navigate]);
 
     console.log('data: ', data);
@@ -163,6 +161,34 @@ function AccountView() {
 
     <div className={style.recentActionsContainer + " drop-shadow"}>
         <h2> Recent Actions </h2>
+        <div> 
+            <table className={style.recentActionsTable}>
+                <tr>
+                    <th>Action</th>
+                    <th>Time</th>
+                    <th>Difficulty</th>
+                    <th>Leaves</th>
+                </tr>
+                {data["activityChallenges"].map((activity) => {
+
+                    return (
+                        <tr key={activity["action"]["id"]}>
+                            <td>{activity["action"]["title"]}</td>
+                            <td>{activity["activityTime"]}</td>
+                            <td>{activity["action"]["effortLevel"]}</td>
+                            <td> 
+                                <div className={style.leafCell}>
+
+                                <div> {activity["leafValue"]} </div> 
+                                <div className={style.leafImage}><img src={leavesURL} width={40} height={40}/> </div>
+                                </div>
+                            </td>
+                        </tr>
+                    );
+                })}
+            </table>
+
+        </div>
     </div>
 </div>
 }

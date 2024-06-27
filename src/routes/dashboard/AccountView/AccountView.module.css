@@ -81,3 +81,21 @@ th, td {
 .recentActionsContainer {
     padding: 30px;
 }
+
+.recentActionsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recentActionsTable th, 
+.recentActionsTable td {
+    border: 2px solid grey;
+    align-items: center;
+    text-align: center;
+}
+
+.leafCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
