@@ -9,7 +9,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: "https://api-stg.emeraldtechnology.net/v1",
+        target: "https://api.emeraldtechnology.net/v1",
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '')
