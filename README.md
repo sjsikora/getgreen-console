@@ -1,4 +1,4 @@
-# Get Green Admin Console
+# Get Green Console
 
 ## How to start up:
 
