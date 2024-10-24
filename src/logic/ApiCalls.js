@@ -18,7 +18,7 @@ export async function searchForUser(apiKey, emailOrUsername) {
         userNameOrEmail: emailOrUsername
     }
 
-    const response = await axios.post("http://localhost:5173/api/account/userNameOrEmail", data, headers);
+    const response = await axios.post("https://api.emeraldtechnology.net/v1/account/userNameOrEmail", data, headers);
     return response.data;
 
 }
@@ -34,7 +34,7 @@ export async function getAccountInfo(apiKey, accessToken, userId) {
         }
     }
 
-    const response = await axios.get("http://localhost:5173/api/account/profile", headers);
+    const response = await axios.get("https://api.emeraldtechnology.net/v1/account/profile", headers);
     return response.data;
 }
 
@@ -48,7 +48,7 @@ export async function landingPageLogin(apiKey, emailOrUsername, password) {
         password: password
     }
 
-    const response = await axios.post("http://localhost:5173/api/auth/login", data, headers);
+    const response = await axios.post("https://api.emeraldtechnology.net/v1/auth/login", data, headers);
     return response.data;
 }
 
@@ -60,7 +60,7 @@ export async function sendResetPasswordEmail(apiKey, email) {
         email: email
     }
 
-    const response = await axios.post("http://localhost:5173/api/account/reset-password", data, headers);
+    const response = await axios.post("https://api.emeraldtechnology.net/v1/account/reset-password", data, headers);
     return response.data;
     
 }
