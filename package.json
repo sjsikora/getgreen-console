@@ -2,6 +2,7 @@
   "name": "getgreen-admin-console",
   "private": true,
   "version": "0.0.0",
+  
   "type": "module",
   "scripts": {
     "dev": "vite",
